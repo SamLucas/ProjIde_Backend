@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import UserController from "@/controllers/User"
 import PostController from "@/controllers/Post"
+import LoginController from "@/controllers/Login"
 
 export const Routes = Router();
 
@@ -9,10 +10,13 @@ Routes.get("/status", (req, res) => {
   return res.json({ message: "Servidor esta funcionando." });
 });
 
+Routes.post("/login", LoginController.store)
+
 Routes.post("/users", UserController.store)
 
 Routes.post("/posts", PostController.store)
 Routes.get("/posts", PostController.listAll)
+Routes.get("/posts/search", PostController.search)
 
 Routes.get("/posts/solicitations", PostController.solicitations)
 Routes.get("/posts/unique/:post_id", PostController.show)
